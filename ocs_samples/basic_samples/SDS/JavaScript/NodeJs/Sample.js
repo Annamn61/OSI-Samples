@@ -1,5 +1,4 @@
 // Sample.js
-//
 
 var http = require("http");
 var restCall = require("request-promise");
@@ -13,7 +12,6 @@ var tenantId = config.tenantId;
 var apiVersion = config.apiVersion;
 var success = true;
 var errorCap = {};
-
 
 var checkTokenExpired = function (client) {
     return client.getToken(authItems)
@@ -1138,7 +1136,6 @@ var app = function (request1, response)
             }
     }).catch(function (err) { logError(err); });
 
-
     // get metadata
     var getSecondaryStream = createSecondaryStream.then( 
         function(res) {
@@ -1154,7 +1151,6 @@ var app = function (request1, response)
         }
     ).catch(function (err) { logError(err); });
 
-    
     var printSecondaryStream = getSecondaryStream.then(
         function (res) {
             if (JSON.parse(res)["Indexes"].length != 1)
@@ -1163,8 +1159,6 @@ var app = function (request1, response)
     ).catch(function (err) { logError(err);});  
 
     // Modifying an existing stream with a secondary index.
-
-    
     var getOriginalStream = printSecondaryStream.then( 
         function(res) {
            if (client.tokenExpires < nowSeconds) {
@@ -1275,7 +1269,6 @@ var app = function (request1, response)
         }
     ).catch(function (err) { logError(err);});  
 
-
     // Adding Compound Index Type   
     var createCompoundType = printSecondaryStreamAfterUpdate.then( 
         // Step 18
@@ -1316,7 +1309,6 @@ var app = function (request1, response)
     ).catch(function (err) { logError(err); });
 
     // Step 19
-    
     var event2 = [];
 
     var insertValue1 = createCompoundStreamFromType.then(
@@ -1345,7 +1337,6 @@ var app = function (request1, response)
             }
         }
     ).catch(function (err) { logError(err); });
-    
     
     // get last event 
     var getLastValue2 = insertValue1.then(
@@ -1392,7 +1383,6 @@ var app = function (request1, response)
         }
     ).catch(function (err) { logError(err);});  
 
-    
     // get all events
     var getWindowEvents2 = printFirstValue.then(
         function (res) {
